@@ -1,0 +1,18 @@
+# Ignore sensitive configuration file
+config.env
+
+# Ignore Node.js modules
+node_modules
+
+# Ignore cache directories
+.cache
+.parcel-cache
+
+# Ignore Visual Studio Code settings
+.vscode
+
+# Ignore ESLint configuration file
+.eslintrc.json
+
+# Ignore Prettier configuration file
+.prettierrc
