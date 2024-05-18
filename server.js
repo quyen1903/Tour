@@ -1,5 +1,7 @@
 const app = require('./app')
 const dotenv = require('dotenv');
+const https = require('node:https');
+const fs = require('node:fs');
 
 process.on('uncaughtException', err => {
   console.log('UNCAUGHT EXCEPTION! 💥 Shutting down...');
@@ -9,18 +11,7 @@ process.on('uncaughtException', err => {
 });
 
 dotenv.config({ path: './config.env' });
-
-
-// const DB = process.env.DATABASE.replace(
-//   '<PASSWORD>',
-//   process.env.DATABASE_PASSWORD
-// );
-
-// mongoose
-//   .connect(DB)
-//   .then(() => console.log('DB connection successful!'));
-
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 
 
 process.on('unhandledRejection', err => {
@@ -31,7 +22,16 @@ process.on('unhandledRejection', err => {
   });
 });
 
-const server = app.listen(port, () => {
-  console.log(`App running on port ${port}...`);
-});
+// const server = app.listen(port, () => {
+//   console.log(`App running on port ${port}...`);
+// });
 
+const creadential={ 
+  key: fs.readFileSync('./ssl/key.pem'),
+  cert: fs.readFileSync('./ssl/cert.pem')
+}
+const server=https.createServer(creadential,app);
+
+server.listen(port,()=>{
+  console.log(`Secure server is listening on port ${port}`)
+})

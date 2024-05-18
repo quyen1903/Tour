@@ -11,6 +11,10 @@ const checkOverLoad = ()=>{
     setInterval(()=>{
         const numConnection = mongoose.connections.length;
         const numCores = os.cpus().length;
+        /*
+            resident set size
+            this is amount of space occupied in main memory for process
+        */
         const memoryUsage = process.memoryUsage().rss;
         //assume maximum number of connection base on number of core
         const maxConnections = numCores*5;
