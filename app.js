@@ -26,10 +26,10 @@ app.set('views',path.join(__dirname,'views'))
 
 //CORS SETUP
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: 'https://localhost:3000',
   credentials: true,
   methods: 'GET, POST, PUT, DELETE',
-  allowedHeaders: 'Content-Type',
+  allowedHeaders: 'Content-Type'
 }));
   
 //establish connection

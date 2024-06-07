@@ -11,8 +11,6 @@ process.on('uncaughtException', err => {
 });
 
 dotenv.config({ path: './config.env' });
-const port = process.env.PORT;
-
 
 process.on('unhandledRejection', err => {
   console.log('UNHANDLED REJECTION! 💥 Shutting down...');
@@ -22,8 +20,8 @@ process.on('unhandledRejection', err => {
   });
 });
 
-// const server = app.listen(port, () => {
-//   console.log(`App running on port ${port}...`);
+// const server = app.listen(process.env.PORT, () => {
+//   console.log(`App running on port ${process.env.PORT}...`);
 // });
 
 const creadential={ 
@@ -32,6 +30,6 @@ const creadential={
 }
 const server=https.createServer(creadential,app);
 
-server.listen(port,()=>{
-  console.log(`Secure server is listening on port ${port}`)
+server.listen(process.env.PORT,process.env.IP_ADDRESS,()=>{
+  console.log(`Secure server is listening on port ${process.env.PORT}`)
 })
